@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { createToolCallAccuracyScorerCode } from '@mastra/evals/scorers/code';
 import { createCompletenessScorer } from '@mastra/evals/scorers/code';
 import { createScorer } from '@mastra/core/scores';
+import { deepseekModelFromEnv } from '../models/model';
 
 export const toolCallAppropriatenessScorer = createToolCallAccuracyScorerCode({
   expectedTool: 'weatherTool',
@@ -17,7 +18,7 @@ export const translationScorer = createScorer({
     'Checks that non-English location names are translated and used correctly',
   type: 'agent',
   judge: {
-    model: 'openai/gpt-4o-mini',
+    model: deepseekModelFromEnv(),
     instructions:
       'You are an expert evaluator of translation quality for geographic locations. ' +
       'Determine whether the user text mentions a non-English location and whether the assistant correctly uses an English translation of that location. ' +
@@ -71,7 +72,11 @@ export const translationScorer = createScorer({
   })
   .generateReason(({ results, score }) => {
     const r = (results as any)?.analyzeStepResult || {};
-    return `Translation scoring: nonEnglish=${r.nonEnglish ?? false}, translated=${r.translated ?? false}, confidence=${r.confidence ?? 0}. Score=${score}. ${r.explanation ?? ''}`;
+    return `Translation scoring: nonEnglish=${
+      r.nonEnglish ?? false
+    }, translated=${r.translated ?? false}, confidence=${
+      r.confidence ?? 0
+    }. Score=${score}. ${r.explanation ?? ''}`;
   });
 
 export const scorers = {
