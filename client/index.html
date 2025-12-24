@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Comparison Demo</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Weather Comparison</h1>
+      <p class="hint">Add at least 3 locations. The client streams an agent response and executes a client-side weather tool.</p>
+
+      <form id="form" class="card">
+        <label for="tag-input">Locations</label>
+        <div id="tag-list" class="tag-list" aria-label="Selected locations"></div>
+        <input
+          id="tag-input"
+          type="text"
+          placeholder="Type a city and press Enter"
+          autocomplete="off"
+        />
+        <button id="submit" type="submit">Compare (stream)</button>
+      </form>
+
+      <section class="card">
+        <h2>Result</h2>
+        <pre id="result" class="result">Ready.</pre>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
