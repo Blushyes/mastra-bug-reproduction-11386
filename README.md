@@ -2,7 +2,7 @@
 
 This repo is a minimal `server/` + `client/` demo for:
 
-`https://github.com/mastra-ai/mastra/issues/11386`
+[#11386](https://github.com/mastra-ai/mastra/issues/11386)
 
 It streams an agent response using `@mastra/client-js` and executes a **client-side tool** (`get-weather`) to fetch weather for **at least 3 locations** and summarize the comparison.
 
